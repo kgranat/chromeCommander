@@ -107,7 +107,7 @@ We won't be going in too deep with the setup of a Chrome App. You can find an ea
 
 ### style.css
 
-This file is optional and only is used to style the GUI. It can be [downloaded here]().
+This file is optional and only is used to style the GUI. It can be [downloaded here](https://raw.github.com/Element-43/001-Connecting-to-Chrome/master/chrome_app/style.css).
 
 ### Install Plug-in
 
