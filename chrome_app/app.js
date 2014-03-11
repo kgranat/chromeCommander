@@ -41,11 +41,12 @@
   CTC.prototype.updatePorts = function() {
 
     // A reference to the CTC object for use in callbacks
-    var self = this;
+    var self = this,
+        getDevices = chrome.serial.getDevices || chrome.serial.getPorts;
 
 
     // Ask Chrome to find any serial devices
-    chrome.serial.getDevices(function (ports) {
+    getDevices(function (ports) {
 
       // Go through each device
       ports.forEach(function (port) {
