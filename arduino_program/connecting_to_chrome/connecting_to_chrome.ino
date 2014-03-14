@@ -14,9 +14,9 @@ void loop() {
     uint8_t command = Serial.read();
 
     if (command == 1) {
-      pinMode(LED_PIN, HIGH);
+      digitalWrite(LED_PIN, HIGH);
     } else if (command == 0) {
-      pinMode(LED_PIN, LOW);
+      digitalWrite(LED_PIN, LOW);
     }
 
   }
