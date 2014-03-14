@@ -13,9 +13,9 @@ void loop() {
   if (Serial.available()) {
     uint8_t command = Serial.read();
 
-    if (command == '1') {
+    if (command == 1) {
       digitalWrite(LED_PIN, HIGH);
-    } else if (command == '0') {
+    } else if (command == 0) {
       digitalWrite(LED_PIN, LOW);
     }
 
