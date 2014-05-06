@@ -4,19 +4,136 @@
   <meta charset="UTF-8">
   <title>Connecting to Chrome</title>
   <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="jquery.min.js"></script>
+
 </head>
 <body>
 
-  <div class="row">
-    <div class="small-4 columns"><select name="port-selection" id="port-selection"></select></div>
-    <div class="small-4 columns"><button id="port-connect" class="button secondary small expand">Connect</button></div>
-  </div>
+
+
+
 
   <div class="row">
-    <div class="small-2 columns"><button id="led-on" class="button expand">LED On</button></div>
-    <div class="small-2 columns"><button id="led-off" class="button expand">LED Off</button></div>
-    <div class="small-4 columns"><button id="led-toggle" class="button expand">LED Toggle</button></div>
+    <div class="small-2 columns"><select name="port-selection" id="port-selection"></select></div>
+    <div class="small-2 columns"><button id="port-connect" class="button secondary small expand">Connect</button></div>
   </div>
+
+<hr />
+        
+
+ <div class="row">
+    <div class="small-2 columns">
+    	<button type="button" class="button expand" id="cart">Cartesian</button>
+    </div>
+    <div class="small-2 columns">
+    	<button type="button" class="button expand" id="cart90">Cartesian 90&deg;</button>
+    </div>
+    
+ </div>   
+ <div class="row">
+    <div class="small-2 columns">
+    	<button type="button" class="button expand" id="cyl">Cylindrical</button>
+    </div>
+    <div class="small-2 columns">
+    	<button type="button" class="button expand" id="cyl90">Cylindrical 90&deg;</button>
+    </div>
+    
+</div>
+ <div class="row">
+    <div class="small-2 columns">
+    	<button type="button" class="button expand" id="backhoe">Backhoe</button>
+    </div>
+    
+    <div class="small-2 columns">
+    	<button type="button" class="button expand" id="sleep">Sleep</button>
+    </div>
+    
+    
+</div>
+
+
+    
+<div class="row">
+	<div class="small-2 columns">
+		<label class="control-label" for="xpos">X Coordinate - 512 center</label>
+		<input type="text" id="xpos" value="512">
+
+	</div>
+    
+	<div class="small-2 columns">
+		<label class="control-label" for="ypos">Y Coordinate</label>
+		<input type="text" id="ypos" value="200">
+	</div>  
+</div>
+
+
+    
+<div class="row">
+	<div class="small-2 columns">
+		<label class="control-label" for="zpos">Z Coordinate</label>
+		<input type="text" id="zpos" value="200">
+
+	</div>
+    
+    
+</div>
+
+    
+<div class="row">
+	<div class="small-2 columns">
+		<label class="control-label" for="wristangle">Wrist Angle - 90 center</label>
+		<input type="text" id="wristangle" value="90">
+
+	</div>
+    
+	<div class="small-2 columns">
+		<label class="control-label" for="wristrotate">Wrist Rotate - 512 center</label>
+		<input type="text" id="wristrotate" value="512">
+	</div>  
+</div>
+
+
+
+    
+<div class="row">
+	<div class="small-2 columns">
+		<label class="control-label" for="grip">Gripper - 256 center</label>
+		<input type="text" id="grip" value="256">
+
+	</div>
+    
+	<div class="small-2 columns">
+		<label class="control-label" for="delta">250Delta - 0 - 255</label>
+		<input type="text" id="delta" value="128">
+	</div>  
+</div>
+    
+    
+ 
+ 
+<div class="row">
+	<div class="small-4 columns">
+	
+        <button type="button" class="button expand" id="move">Move To Position</button>
+	</div>
+
+</div>
+
+
+      
+
+
+
+
+
+
+
+    
+
+    
+
+    
+
 
   <script src="app.js"></script>
 

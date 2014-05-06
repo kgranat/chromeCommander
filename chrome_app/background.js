@@ -5,10 +5,11 @@ chrome.app.runtime.onLaunched.addListener(function() {
   chrome.app.window.create('window.html', {
     // Make the window 400px by 500px
     'bounds': {
-      'width': 500,
-      'height': 255
+      'width': 800,
+      'height': 800
     },
     resizable: false
   });
 
+    console.log('test insur');
 });
