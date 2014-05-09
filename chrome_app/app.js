@@ -5,17 +5,9 @@
     // A collection of the GUI elements
     this.port      = document.getElementById('port-selection');
     this.connect   = document.getElementById('port-connect');
-    this.ledOff    = document.getElementById('led-off');
-    this.ledOn     = document.getElementById('led-on');
-    this.ledToggle = document.getElementById('led-toggle');
+    
     this.calc      = document.getElementById('calc');
     this.move      = document.getElementById('move');
-    this.calc      = document.getElementById('cart');
-    this.move      = document.getElementById('cart90');
-    this.calc      = document.getElementById('cyl');
-    this.move      = document.getElementById('cyl90');
-    this.calc      = document.getElementById('backhoe');
-    this.move      = document.getElementById('sleep');
     this.delta     = document.getElementById('delta').value;
     this.grip      = document.getElementById('grip').value;
     this.wristangle = document.getElementById('wristangle').value;
@@ -23,11 +15,29 @@
     this.zpos      = document.getElementById('zpos').value;
     this.xpos      = document.getElementById('xpos').value;
     this.ypos      = document.getElementById('ypos').value;
+    
+    
+    
+
+    
+    
+    
+    
+    
+    this.cart      = document.getElementById('cart');
+    this.cart90      = document.getElementById('cart90');
+    this.cyl      = document.getElementById('cyl');
+    this.cyl90      = document.getElementById('cyl90');
+    this.backhoe      = document.getElementById('backhoe');
+    this.sleep      = document.getElementById('sleep');
+    
+    
+    
 
     // Stats variables
     this.updatingConnection = false;
     this.connection         = null;
-    this.ledStatus          = false;
+    
 
 
     this.buffer = new Uint8Array(17);
@@ -94,32 +104,16 @@
 
     var buffer = new Uint8Array(17);
 
+
     // Connects to the selected port
     self.connect.addEventListener('click', function () {
       self.updateConnection();
     });
 
-    // Sends the off command
-    self.ledOff.addEventListener('click', function () {
-      self.ledStatus = false;
-      self.transmit(false);
-    });
 
-    // Sends the on command
-    self.ledOn.addEventListener('click', function () {
-      self.ledStatus = true;
-      self.transmit(true);
-    });
 
-    // Sends the opposite command of the current status
-    self.ledToggle.addEventListener('click', function () {
-      self.ledStatus = !self.ledStatus;
-      self.transmit(self.ledStatus);
-    });
-    
-    
-    
-	self.moves.addEventListener('click', function () {
+
+self.move.addEventListener('click', function () {
 
 
 
@@ -143,6 +137,28 @@
     self.buffer[16] = 255-(( self.buffer[1] +  self.buffer[2] +  self.buffer[3] +  self.buffer[4] + self.buffer[5] + self.buffer[6] + self.buffer[7] +  self.buffer[8] + self.buffer[9] +  self.buffer[10] + self.buffer[11] + self.buffer[12] + self.buffer[13] + self.buffer[14] )%256);
 
 
+    // = 0xBF;
+    console.log('test3');
+    //console.log(self.delta);
+    console.log(self.buffer[0]);
+    console.log(self.buffer[1]);
+    console.log(self.buffer[2]);
+    console.log(self.buffer[3]);
+    console.log(self.buffer[4]);
+    console.log(self.buffer[5]);
+    console.log(self.buffer[6]);
+    console.log(self.buffer[7]);
+    console.log(self.buffer[8]);
+    console.log(self.buffer[9]);
+    console.log(self.buffer[10]);
+    console.log(self.buffer[11]);
+    console.log(self.buffer[12]);
+    console.log(self.buffer[13]);
+    console.log(self.buffer[14]);
+    console.log(self.buffer[15]);
+    console.log(self.buffer[16]);
+
+
     self.transmit(self.buffer);
     });
 
@@ -150,7 +166,7 @@
 
 
 
-	self.move.addEventListener('click', function () {
+self.calc.addEventListener('click', function () {
 
 
     self.buffer[0] = 0xff;//header
@@ -169,21 +185,18 @@
     self.buffer[13] = 0x00;//Delta Value
     self.buffer[14] = 0x00;//Button Value
     self.buffer[15] = 0x20;//Extended Instruction go home 3d cartesian
-    //self.buffer[16] = 255-(( self.buffer[1] +  self.buffer[2] +  self.buffer[3] +  self.buffer[4] + self.buffer[5] + self.buffer[6] + self.buffer[7] +  self.buffer[8] + self.buffer[9] +  self.buffer[10] + self.buffer[11] + self.buffer[12] + self.buffer[13] + self.buffer[14] + self.buffer[15] )%256);
+    self.buffer[16] = 255-(( self.buffer[1] +  self.buffer[2] +  self.buffer[3] +  self.buffer[4] + self.buffer[5] + self.buffer[6] + self.buffer[7] +  self.buffer[8] + self.buffer[9] +  self.buffer[10] + self.buffer[11] + self.buffer[12] + self.buffer[13] + self.buffer[14] + self.buffer[15] )%256);
 
-
-    self.buffer[16] = 0xDF;//Checksum
+    //self.buffer[16] = 0xDF;//Checksum
     console.log('test3');
     console.log(self.buffer[0]);
 
 
     self.transmit(self.buffer);
     });
-    
-    
-    
-    
 
+
+  
 
 
 
@@ -207,7 +220,7 @@
     self.buffer[13] = 0x00;//Delta Value
     self.buffer[14] = 0x00;//Button Value
     self.buffer[15] = 0x20;//Extended Instruction go home 3d cartesian
-    self.buffer[16] = 0xDF;//Checksum
+    self.buffer[16] = 255-(( self.buffer[1] +  self.buffer[2] +  self.buffer[3] +  self.buffer[4] + self.buffer[5] + self.buffer[6] + self.buffer[7] +  self.buffer[8] + self.buffer[9] +  self.buffer[10] + self.buffer[11] + self.buffer[12] + self.buffer[13] + self.buffer[14] + self.buffer[15] )%256);
 //    self.buffer[16] = 255-(( self.buffer[1] +  self.buffer[2] +  self.buffer[3] +  self.buffer[4] + self.buffer[5] + self.buffer[6] + self.buffer[7] +  self.buffer[8] + self.buffer[9] +  self.buffer[10] + self.buffer[11] + self.buffer[12] + self.buffer[13] + self.buffer[14] + self.buffer[15] )%256);
   
   
@@ -238,8 +251,8 @@
     self.buffer[12] = 0x00;//Gripper Low
     self.buffer[13] = 0x00;//Delta Value
     self.buffer[14] = 0x00;//Button Value
-    self.buffer[15] = 0x20;//Extended Instruction go home 3d cartesian
-    self.buffer[16] = 0xDF;//Checksum
+    self.buffer[15] = 0x28;//Extended Instruction go home 3d cartesian
+    self.buffer[16] = 255-(( self.buffer[1] +  self.buffer[2] +  self.buffer[3] +  self.buffer[4] + self.buffer[5] + self.buffer[6] + self.buffer[7] +  self.buffer[8] + self.buffer[9] +  self.buffer[10] + self.buffer[11] + self.buffer[12] + self.buffer[13] + self.buffer[14] + self.buffer[15] )%256);
     console.log('test3');
     console.log(self.buffer[0]);
 
@@ -270,8 +283,8 @@
     self.buffer[12] = 0x00;//Gripper Low
     self.buffer[13] = 0x00;//Delta Value
     self.buffer[14] = 0x00;//Button Value
-    self.buffer[15] = 0x20;//Extended Instruction go home 3d cartesian
-    self.buffer[16] = 0xDF;//Checksum
+    self.buffer[15] = 0x30;//Extended Instruction go home 3d cartesian
+    self.buffer[16] = 255-(( self.buffer[1] +  self.buffer[2] +  self.buffer[3] +  self.buffer[4] + self.buffer[5] + self.buffer[6] + self.buffer[7] +  self.buffer[8] + self.buffer[9] +  self.buffer[10] + self.buffer[11] + self.buffer[12] + self.buffer[13] + self.buffer[14] + self.buffer[15] )%256);
     console.log('test3');
     console.log(self.buffer[0]);
 
@@ -303,8 +316,8 @@
     self.buffer[12] = 0x00;//Gripper Low
     self.buffer[13] = 0x00;//Delta Value
     self.buffer[14] = 0x00;//Button Value
-    self.buffer[15] = 0x20;//Extended Instruction go home 3d cartesian
-    self.buffer[16] = 0xDF;//Checksum
+    self.buffer[15] = 0x38;//Extended Instruction go home 3d cartesian
+    self.buffer[16] = 255-(( self.buffer[1] +  self.buffer[2] +  self.buffer[3] +  self.buffer[4] + self.buffer[5] + self.buffer[6] + self.buffer[7] +  self.buffer[8] + self.buffer[9] +  self.buffer[10] + self.buffer[11] + self.buffer[12] + self.buffer[13] + self.buffer[14] + self.buffer[15] )%256);
     console.log('test3');
     console.log(self.buffer[0]);
 
@@ -336,8 +349,8 @@
     self.buffer[12] = 0x00;//Gripper Low
     self.buffer[13] = 0x00;//Delta Value
     self.buffer[14] = 0x00;//Button Value
-    self.buffer[15] = 0x20;//Extended Instruction go home 3d cartesian
-    self.buffer[16] = 0xDF;//Checksum
+    self.buffer[15] = 0x40;//Extended Instruction go home 3d cartesian
+    self.buffer[16] = 255-(( self.buffer[1] +  self.buffer[2] +  self.buffer[3] +  self.buffer[4] + self.buffer[5] + self.buffer[6] + self.buffer[7] +  self.buffer[8] + self.buffer[9] +  self.buffer[10] + self.buffer[11] + self.buffer[12] + self.buffer[13] + self.buffer[14] + self.buffer[15] )%256);
     console.log('test3');
     console.log(self.buffer[0]);
 
@@ -368,8 +381,8 @@
     self.buffer[12] = 0x00;//Gripper Low
     self.buffer[13] = 0x00;//Delta Value
     self.buffer[14] = 0x00;//Button Value
-    self.buffer[15] = 0x20;//Extended Instruction go home 3d cartesian
-    self.buffer[16] = 0xDF;//Checksum
+    self.buffer[15] = 0x60;//Extended Instruction go home 3d cartesian
+    self.buffer[16] = 255-(( self.buffer[1] +  self.buffer[2] +  self.buffer[3] +  self.buffer[4] + self.buffer[5] + self.buffer[6] + self.buffer[7] +  self.buffer[8] + self.buffer[9] +  self.buffer[10] + self.buffer[11] + self.buffer[12] + self.buffer[13] + self.buffer[14] + self.buffer[15] )%256);
     console.log('test3');
     console.log(self.buffer[0]);
 
@@ -379,10 +392,12 @@
     
     
     
-    
-    
+
+
 
   };
+        
+  
 
   CTC.prototype.updateConnection = function() {
 
