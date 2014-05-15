@@ -23,29 +23,29 @@
 
  <div class="row">
     <div class="small-2 columns">
-    	<button type="button" class="button expand" id="cart">Cartesian</button>
+    	<button type="button" class="button expand inactiveMode" id="cart">Cartesian</button>
     </div>
     <div class="small-2 columns">
-    	<button type="button" class="button expand" id="cart90">Cartesian 90&deg;</button>
+    	<button type="button" class="button expand inactiveMode" id="cart90">Cartesian 90&deg;</button>
     </div>
     
  </div>   
  <div class="row">
     <div class="small-2 columns">
-    	<button type="button" class="button expand" id="cyl">Cylindrical</button>
+    	<button type="button" class="button expand inactiveMode" id="cyl">Cylindrical</button>
     </div>
     <div class="small-2 columns">
-    	<button type="button" class="button expand" id="cyl90">Cylindrical 90&deg;</button>
+    	<button type="button" class="button expand inactiveMode" id="cyl90">Cylindrical 90&deg;</button>
     </div>
     
 </div>
  <div class="row">
     <div class="small-2 columns">
-    	<button type="button" class="button expand" id="backhoe">Backhoe</button>
+    	<button type="button" class="button expand inactiveMode" id="backhoe">Backhoe</button>
     </div>
     
     <div class="small-2 columns">
-    	<button type="button" class="button expand" id="sleep">Sleep</button>
+    	<button type="button" class="button expand activeMode" id="sleep">Sleep</button>
     </div>
     
     
@@ -55,13 +55,13 @@
     
 <div class="row">
 	<div class="small-2 columns">
-		<label class="control-label" for="xpos">X Coordinate - 512 center</label>
+		<label class="control-label" for="xpos" id="xposlabel">X Coordinate - 512 center</label>
 		<input type="text" id="xpos" value="512">
 
 	</div>
     
 	<div class="small-2 columns">
-		<label class="control-label" for="ypos">Y Coordinate</label>
+		<label class="control-label" for="ypos" id="yposlabel">Y Coordinate</label>
 		<input type="text" id="ypos" value="200">
 	</div>  
 </div>
@@ -70,7 +70,7 @@
     
 <div class="row">
 	<div class="small-2 columns">
-		<label class="control-label" for="zpos">Z Coordinate</label>
+		<label class="control-label" for="zpos" id="zposlabel">Z Coordinate</label>
 		<input type="text" id="zpos" value="200">
 
 	</div>
@@ -81,13 +81,13 @@
     
 <div class="row">
 	<div class="small-2 columns">
-		<label class="control-label" for="wristangle">Wrist Angle - 90 center</label>
+		<label class="control-label" for="wristangle" id="wristanglabel">Wrist Angle - 90 center</label>
 		<input type="text" id="wristangle" value="90">
 
 	</div>
     
 	<div class="small-2 columns">
-		<label class="control-label" for="wristrotate">Wrist Rotate - 512 center</label>
+		<label class="control-label" for="wristrotate" id="wristrotlabel">Wrist Rotate - 512 center</label>
 		<input type="text" id="wristrotate" value="512">
 	</div>  
 </div>
@@ -97,13 +97,13 @@
     
 <div class="row">
 	<div class="small-2 columns">
-		<label class="control-label" for="grip">Gripper - 256 center</label>
+		<label class="control-label" for="grip" id="griplabel">Gripper - 256 center</label>
 		<input type="text" id="grip" value="256">
 
 	</div>
     
 	<div class="small-2 columns">
-		<label class="control-label" for="delta">250Delta - 0 - 255</label>
+		<label class="control-label" for="delta" id="deltalabel">Delta - 0 - 255</label>
 		<input type="text" id="delta" value="128">
 	</div>  
 </div>
@@ -126,7 +126,243 @@
 
       
 
+<div class="row">
+	<h1>Packet Last Sent:</h1>
+	<span id="packet"></span>
 
+
+	<table>
+		<tr>
+			<th>
+				Packet #
+			</th>
+			<th>
+				0
+			</th>
+			<th>
+				1
+			</th>
+			<th>
+				2
+			</th>
+			<th>
+				3
+			</th>
+			<th>
+				4
+			</th>
+			<th>
+				5
+			</th>
+			<th>
+				6
+			</th>
+			<th>
+				7
+			</th>
+			<th>
+				8
+			</th>
+			<th>
+				9
+			</th>
+			<th>
+				10
+			</th>
+			<th>
+				11
+			</th>
+			<th>
+				12
+			</th>
+			<th>
+				13
+			</th>
+			<th>
+				14
+			</th>
+			<th>
+				15
+			</th>
+		</tr>
+		
+		<!--
+		<tr>
+			<th>
+				Packet Name
+			</th>
+			<th>
+				Header
+			</th>
+			<th>
+				X - High Byte
+			</th>
+			<th>
+				X - Low Byte
+			</th>
+			<th>
+				Y - High Byte
+			</th>
+			<th>
+				Y - Low Byte
+			</th>
+			<th>
+				Z - High Byte
+			</th>
+			<th>
+				Z - Low Byte
+			</th>
+			<th>
+				Wrist Angle - High Byte
+			</th>
+			<th>
+				Wrist Angle - Low Byte
+			</th>
+			<th>
+				Wrist Rotate - High Byte
+			</th>
+			<th>
+				Wrist Rotate - Low Byte
+			</th>
+			<th>
+				Gripper - High Byte
+			</th>
+			<th>
+				Gripper - Low Byte
+			</th>
+			<th>
+				Delta
+			</th>
+			<th>
+				Buttons
+			</th>
+			<th>
+				Extended Instruction Byte 
+			</th>
+			<th>
+				Checksum
+			</th>
+		</tr>
+		-->
+		
+		<tr>
+			<td>
+				Hex
+			</td>
+			<td id ="hex0">
+				
+			</td>
+			<td id ="hex1">
+				
+			</td>
+			<td id ="hex2">
+				
+			</td>
+			<td id ="hex3">
+				
+			</td>
+			<td id ="hex4">
+				
+			</td>
+			<td id ="hex5">
+				
+			</td>
+			<td id ="hex6">
+				
+			</td>
+			<td id ="hex7">
+				
+			</td>
+			<td id ="hex8">
+				
+			</td>
+			<td id ="hex9">
+				
+			</td>
+			<td id ="hex10">
+				
+			</td>
+			<td id ="hex11">
+				
+			</td>
+			<td id ="hex12">
+				
+			</td>
+			<td id ="hex13">
+				
+			</td>
+			<td id ="hex14">
+				
+			</td>
+			<td id ="hex15">
+				
+			</td>
+			<td id ="hex16">
+				
+			</td>
+		
+		</tr>
+		
+		<tr>
+			<td>
+				Decimal
+			</td>
+			<td id ="dec0">
+				
+			</td>
+			<td id ="dec1">
+				
+			</td>
+			<td id ="dec2">
+				
+			</td>
+			<td id ="dec3">
+				
+			</td>
+			<td id ="dec4">
+				
+			</td>
+			<td id ="dec5">
+				
+			</td>
+			<td id ="dec6">
+				
+			</td>
+			<td id ="dec7">
+				
+			</td>
+			<td id ="dec8">
+				
+			</td>
+			<td id ="dec9">
+				
+			</td>
+			<td id ="dec10">
+				
+			</td>
+			<td id ="dec11">
+				
+			</td>
+			<td id ="dec12">
+				
+			</td>
+			<td id ="dec13">
+				
+			</td>
+			<td id ="dec14">
+				
+			</td>
+			<td id ="dec15">
+				
+			</td>
+			<td id ="dec16">
+				
+			</td>
+		
+		</tr>
+	</table>
+
+</div>
 
 
 
